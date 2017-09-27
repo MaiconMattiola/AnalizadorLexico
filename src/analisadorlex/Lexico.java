@@ -114,15 +114,13 @@ public class Lexico {
                             System.out.println(regra);
                             verifica = true;
                         }
-                    } else {
-                        if (array[i] == '<') {
-                            regra = 32;
-                            nome = "<";//tratar espaço
-                            controle++;
-                            arrayderegras.add(regra);
-                            System.out.println(regra);
-                            verifica = true;
-                        }
+                    } else if (array[i] == '<') {
+                        regra = 32;
+                        nome = "<";//tratar espaço
+                        controle++;
+                        arrayderegras.add(regra);
+                        System.out.println(regra);
+                        verifica = true;
                     }
                     break;
                 case '=':
@@ -143,16 +141,14 @@ public class Lexico {
                             arrayderegras.add(regra);
                             verifica = true;
                         }
-                    } else {
-                        if (array[i] == '=') {
-                            regra = 29;//tratar espaço
-                            nome = "=";
-                            controle++;
-                            System.out.println(regra);
-                            arrayderegras.add(regra);
-                            verifica = true;
+                    } else if (array[i] == '=') {
+                        regra = 29;//tratar espaço
+                        nome = "=";
+                        controle++;
+                        System.out.println(regra);
+                        arrayderegras.add(regra);
+                        verifica = true;
 
-                        }
                     }
                     break;
 
@@ -174,15 +170,13 @@ public class Lexico {
                             arrayderegras.add(regra);
                             verifica = true;
                         }
-                    } else {
-                        if (array[i] == '+') {
-                            regra = 34;
-                            nome = "+";
-                            controle++;
-                            System.out.println(regra);
-                            arrayderegras.add(regra);
-                            verifica = true;
-                        }
+                    } else if (array[i] == '+') {
+                        regra = 34;
+                        nome = "+";
+                        controle++;
+                        System.out.println(regra);
+                        arrayderegras.add(regra);
+                        verifica = true;
                     }
                     break;
                 case '}':
@@ -244,15 +238,13 @@ public class Lexico {
                             arrayderegras.add(regra);
                             verifica = true;
                         }
-                    } else {
-                        if (array[i] == '/') {
-                            regra = 39;
-                            nome = "/";
-                            controle++;
-                            System.out.println(regra);
-                            arrayderegras.add(regra);
-                            verifica = true;
-                        }
+                    } else if (array[i] == '/') {
+                        regra = 39;
+                        nome = "/";
+                        controle++;
+                        System.out.println(regra);
+                        arrayderegras.add(regra);
+                        verifica = true;
                     }
 
                 case ',':
@@ -339,25 +331,26 @@ public class Lexico {
                             arrayderegras.add(regra);
                             verifica = true;
                         }
-                    } else {
-                        if (array[i] == '-') {
-                            regra = 47;
-                            nome = "-";
-                            controle++;
-                            System.out.println(regra);
-                            arrayderegras.add(regra);
-                            verifica = true;
+                    } else if (array[i] == '-') {
+                        regra = 47;
+                        nome = "-";
+                        controle++;
+                        System.out.println(regra);
+                        arrayderegras.add(regra);
+                        verifica = true;
 
-                        }
                     }
 
                     break;
 
                 case '#':
+
                     if (i < array.length - 1) {
+
                         if (array[i + 1] == '/') {
                             //regra = 51;
                             while (array[i] != '#') {
+
                                 i++;
                             }
 
@@ -377,26 +370,21 @@ public class Lexico {
                             i++;
 
                         } else {
-                            if (array[i + 1] == '#') {
-                                while (array[i] != '\n') {
-                                    i++;
-                                    if (i == array.length) {
-                                        break;
-                                    }
+                            int aux = array.length - 1;
 
-                                }
-
-                                nome = "comentario de linha";
-                                controle++;
-                                System.out.println(regra);
-                                arrayderegras.add(regra);
-                                verifica = true;
+                            while (array[aux] != '\n') {
                                 i++;
-                                //  while(array[i] != '\n'){
-                                //i++;
-                                //}regra = 52;
-
+                                if (i == array.length) {
+                                    break;
+                                }
                             }
+                            nome = "comentario de linha";
+                            controle++;
+                            System.out.println(regra);
+                            arrayderegras.add(regra);
+                            verifica = true;
+                            i++;
+
                         }
                     }
                     break;
