@@ -1,15 +1,21 @@
 package analisadorlex;
 
 import java.awt.FileDialog;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 public class Editor extends javax.swing.JFrame {
 
     private FileDialog salvar;
+    private File abrir;
 
     public Editor() {
         initComponents();
@@ -33,6 +39,7 @@ public class Editor extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         btnArquivo = new javax.swing.JMenu();
         btnExecutar = new javax.swing.JRadioButtonMenuItem();
+        Abrir = new javax.swing.JMenuItem();
         Salvar = new javax.swing.JMenuItem();
         btnSair = new javax.swing.JRadioButtonMenuItem();
         btnAjuda = new javax.swing.JMenu();
@@ -62,6 +69,14 @@ public class Editor extends javax.swing.JFrame {
             }
         });
         btnArquivo.add(btnExecutar);
+
+        Abrir.setText("Abrir");
+        Abrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AbrirActionPerformed(evt);
+            }
+        });
+        btnArquivo.add(Abrir);
 
         Salvar.setText("Salvar");
         Salvar.addActionListener(new java.awt.event.ActionListener() {
@@ -172,12 +187,12 @@ public class Editor extends javax.swing.JFrame {
                     try (FileWriter out = new FileWriter(nome + ".txt")) {
                         out.write(textocod.getText());
                     }
-                    
-                    String str[]=textocod.getText().split("\n");
-                    PrintWriter pw = new PrintWriter (nome + ".txt");
-                    
-                    for(String codigo : str){
-                        pw.println (codigo);
+
+                    String str[] = textocod.getText().split("\n");
+                    PrintWriter pw = new PrintWriter(nome + ".txt");
+
+                    for (String codigo : str) {
+                        pw.println(codigo);
                     }
                     pw.close();
                 } catch (java.io.IOException exc) {
@@ -190,6 +205,31 @@ public class Editor extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_SalvarActionPerformed
+
+    private void AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirActionPerformed
+
+        JFileChooser chooser = new JFileChooser();
+
+        int returnVal = chooser.showOpenDialog(null);
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            abrir = chooser.getSelectedFile();
+        }
+        try {
+            RandomAccessFile file = new RandomAccessFile(abrir, "rw");
+            String linha = "";
+            StringBuffer txt = new StringBuffer();
+            while ((linha = file.readLine()) != null) {
+                txt.append(linha + "\n");
+            }
+            textocod.setText(txt.toString());
+            texto2.setText(null);
+            file.seek(0);
+        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
+        }
+
+    }//GEN-LAST:event_AbrirActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -232,6 +272,7 @@ public class Editor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Abrir;
     private javax.swing.JMenuItem Salvar;
     private javax.swing.JMenu btnAjuda;
     private javax.swing.JMenu btnArquivo;
