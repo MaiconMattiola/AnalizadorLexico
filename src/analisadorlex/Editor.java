@@ -1,23 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package analisadorlex;
 
+import java.awt.FileDialog;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Andre
- */
 public class Editor extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Editor
-     */
+    private FileDialog salvar;
+
     public Editor() {
         initComponents();
     }
@@ -40,6 +33,7 @@ public class Editor extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         btnArquivo = new javax.swing.JMenu();
         btnExecutar = new javax.swing.JRadioButtonMenuItem();
+        Salvar = new javax.swing.JMenuItem();
         btnSair = new javax.swing.JRadioButtonMenuItem();
         btnAjuda = new javax.swing.JMenu();
         btnSobre = new javax.swing.JRadioButtonMenuItem();
@@ -68,6 +62,14 @@ public class Editor extends javax.swing.JFrame {
             }
         });
         btnArquivo.add(btnExecutar);
+
+        Salvar.setText("Salvar");
+        Salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalvarActionPerformed(evt);
+            }
+        });
+        btnArquivo.add(Salvar);
 
         btnSair.setSelected(true);
         btnSair.setText("Sair");
@@ -115,49 +117,80 @@ public class Editor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSobreActionPerformed
-        
-                JOptionPane.showMessageDialog(null, "### Andre Da Luz Guizzo ### \n ### Henrique de Noni ###"+"\n \n \t \t CRICIÚMA Abril de 2015" +"\n \n \t\t UNESC \n\n \t\t Compiladores");
+
+        JOptionPane.showMessageDialog(null, "### Andre Da Luz Guizzo ### \n ### Henrique de Noni ###" + "\n \n \t \t CRICIÚMA Abril de 2015" + "\n \n \t\t UNESC \n\n \t\t Compiladores");
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSobreActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        
+
         System.exit(0);
-        
+
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExecutarActionPerformed
-       
+
         String ler = textocod.getText();
         Lexico lexico = new Lexico();
         lexico.Teste = ler;
         lexico.token();
-        
+
         //for(int j=0;j<ler.length();j++){
         List<String> regras = new ArrayList();
         //List<String> nomes = new ArrayList();
         //regras.addAll(lexico.arrayderegras);
         regras.addAll(lexico.getRegras());
-       
+
 //            System.out.println(regras[1]);
-       // jTextField1.setText( conta1.saldo + "");
+        // jTextField1.setText( conta1.saldo + "");
 //       texto2.setText(String.valueOf(regras[2])); //perguntar na sala
-       
-       StringBuilder texto = new StringBuilder();
-       for(int i = 0; i < regras.size(); i++){
+        StringBuilder texto = new StringBuilder();
+        for (int i = 0; i < regras.size(); i++) {
             texto.append(regras.get(i));
             texto.append("\n");
-            
-       }
-       
-      texto2.setText( texto.toString());
-       // }
+
+        }
+
+        texto2.setText(texto.toString());
+        // }
         //texto2.setText(String.valueOf(WIDTH));
     }//GEN-LAST:event_btnExecutarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
+
+        salvar = new FileDialog(this, "Salvar arquivo", FileDialog.SAVE);//salvar em disco 
+        if (textocod.getText() != null) {
+            int opc = JOptionPane.showConfirmDialog(null, "Deseja salvar as arquivo?");
+            if (opc == JOptionPane.YES_OPTION) {
+                try {
+                    salvar.show();
+                    if (salvar.getFile() == null) {
+                        return;
+                    }
+                    String nome = salvar.getDirectory() + salvar.getFile();
+                    textocod.setLineWrap(true);
+                    try (FileWriter out = new FileWriter(nome + ".txt")) {
+                        out.write(textocod.getText());
+                    }
+                    
+                    String str[]=textocod.getText().split("\n");
+                    PrintWriter pw = new PrintWriter (nome + ".txt");
+                    
+                    for(String codigo : str){
+                        pw.println (codigo);
+                    }
+                    pw.close();
+                } catch (java.io.IOException exc) {
+                }
+            }
+            if (opc == JOptionPane.NO_OPTION) {
+                textocod.setText(null);
+            }
+        }
+
+
+    }//GEN-LAST:event_SalvarActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -169,16 +202,24 @@ public class Editor extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Editor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Editor.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Editor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Editor.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Editor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Editor.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Editor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Editor.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -191,6 +232,7 @@ public class Editor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Salvar;
     private javax.swing.JMenu btnAjuda;
     private javax.swing.JMenu btnArquivo;
     private javax.swing.JRadioButtonMenuItem btnExecutar;
