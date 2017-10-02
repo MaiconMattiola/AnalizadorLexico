@@ -133,14 +133,13 @@ public class Editor extends javax.swing.JFrame {
 
     private void btnSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSobreActionPerformed
 
-        JOptionPane.showMessageDialog(null, "### Andre Da Luz Guizzo ### \n ### Henrique de Noni ###" + "\n \n \t \t CRICIÚMA Abril de 2015" + "\n \n \t\t UNESC \n\n \t\t Compiladores");
+        JOptionPane.showMessageDialog(null, "### Alisson Guimara ### \n ### Maicon Matiola ###" + "\n \n \t \t CRICIÚMA Setembro de 2017" + "\n \n \t\t UNESC \n\n \t\t Compiladores");
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSobreActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
 
         System.exit(0);
-
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExecutarActionPerformed
@@ -150,15 +149,8 @@ public class Editor extends javax.swing.JFrame {
         lexico.Teste = ler;
         lexico.token();
 
-        //for(int j=0;j<ler.length();j++){
         List<String> regras = new ArrayList();
-        //List<String> nomes = new ArrayList();
-        //regras.addAll(lexico.arrayderegras);
         regras.addAll(lexico.getRegras());
-
-//            System.out.println(regras[1]);
-        // jTextField1.setText( conta1.saldo + "");
-//       texto2.setText(String.valueOf(regras[2])); //perguntar na sala
         StringBuilder texto = new StringBuilder();
         for (int i = 0; i < regras.size(); i++) {
             texto.append(regras.get(i));
@@ -167,8 +159,6 @@ public class Editor extends javax.swing.JFrame {
         }
 
         texto2.setText(texto.toString());
-        // }
-        //texto2.setText(String.valueOf(WIDTH));
     }//GEN-LAST:event_btnExecutarActionPerformed
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed

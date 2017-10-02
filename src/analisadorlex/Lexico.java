@@ -73,9 +73,12 @@ public class Lexico {
         String[] caractere = new String[i];
         int regra = 0;
         String nome = null;
+        String nome_erro = null;
         char[] array = Teste.toCharArray();
         boolean verifica = false;
         boolean confirma = false;
+        boolean erro = false;
+        
         for (i = 0; i < array.length; i++) {
             char caracter = array[i];
 
@@ -93,8 +96,6 @@ public class Lexico {
                             nome = "<=";
                             controle++;
                             arrayderegras.add(regra);
-                            //Adicionado por Ramon
-                            //linhasRegras.add("Regra = " + regra + " Linha = " + linha);
                             System.out.println(regra);
                             i++;
                             verifica = true;
@@ -148,7 +149,6 @@ public class Lexico {
                         System.out.println(regra);
                         arrayderegras.add(regra);
                         verifica = true;
-
                     }
                     break;
 
@@ -220,16 +220,32 @@ public class Lexico {
                     }
 
                 case '/':
-
                     if (i < array.length - 1) {
                         if (array[i + 1] == '#') {
-                            regra = 48;
-                            nome = "/#";
-                            controle++;
-                            System.out.println(regra);
-                            arrayderegras.add(regra);
-                            verifica = true;
                             i++;
+                            i++;
+                            try {
+                                while (array[i] != '#') {
+                                    i++;
+                                }
+                                System.out.println(array[i + 1]);
+                            } catch (ArrayIndexOutOfBoundsException e) {
+                                nome_erro = "Comentario de Bloco Não fechado";
+                                erro = true;
+                                i--;
+                            }
+                            
+                            if (!erro) {
+                                if (array[i + 1] == '/') {
+                                    regra = 49;
+                                    nome = "Comentario de bloco";
+                                    controle++;
+                                    System.out.println(regra);
+                                    arrayderegras.add(regra);
+                                    verifica = true;
+                                    i++;
+                                }
+                            }
                         } else if (array[i] == '/') {
                             regra = 39;
                             nome = "/";
@@ -344,53 +360,26 @@ public class Lexico {
                     break;
 
                 case '#':
+                    if (array[i] == '#') {
+                        int aux = array.length - 1;
 
-                    if (i < array.length - 1) {
-
-                        if (array[i + 1] == '/') {
-                            //regra = 51;
-                            while (array[i] != '#') {
-
-                                i++;
-                            }
-
-                            if (array[i + 1] == '/') {
-
-                                nome = "Comentario de bloco";
-                                controle++;
-                                System.out.println(regra);
-                                arrayderegras.add(regra);
-
-                            }
+                        while (array[aux] != '\n') {
                             i++;
-                            verifica = true;
-                            while (array[i] != '#') {
-                                i++;
+                            if (i == array.length) {
+                                break;
                             }
-                            i++;
-
-                        } else {
-                            int aux = array.length - 1;
-
-                            while (array[aux] != '\n') {
-                                i++;
-                                if (i == array.length) {
-                                    break;
-                                }
-                            }
-                            nome = "comentario de linha";
-                            controle++;
-                            System.out.println(regra);
-                            arrayderegras.add(regra);
-                            verifica = true;
-                            i++;
-
                         }
+                        regra = 48;
+                        nome = "comentario de linha";
+                        controle++;
+                        System.out.println(regra);
+                        arrayderegras.add(regra);
+                        verifica = true;
+                        i++;
                     }
                     break;
 
                 case '$':
-
                     i++;
                     int first = i;
                     while (arrayinteiro.contains(array[i]) || arraychar.contains(array[i])) {
@@ -398,7 +387,8 @@ public class Lexico {
                             if (arraychar.contains(array[i])) {
                                 i++;
                             } else {
-                                JOptionPane.showMessageDialog(null, " ERRO \n Variavel não pode Começar com Número");
+                                erro = true;
+                                nome_erro = "Variavel não pode Começar com Número";
                                 break;
                             }
                         } else {
@@ -419,9 +409,9 @@ public class Lexico {
 
                         verifica = true;
                     } else {
-                        JOptionPane.showMessageDialog(null, " ERRO \n Excedeu a quantidade permitida de caracter");
+                        erro = true;
+                        nome_erro = "Excedeu o Tamanho do Nome da Variavel";
                     }
-                    //i++;
                     break;
 
                 case '\'':
@@ -439,10 +429,9 @@ public class Lexico {
                         System.out.println(regra);
                         arrayderegras.add(regra);
                         verifica = true;
-                        //i++;
-                        //verifica = true;
                     } else {
-                        JOptionPane.showMessageDialog(null, " ERRO \n Excedeu a quantidade de caracter");
+                        erro = true;
+                        nome_erro = "Excedeu a quantidade de caracter";
                     }
                     break;
 
@@ -461,10 +450,9 @@ public class Lexico {
                         System.out.println(regra);
                         arrayderegras.add(regra);
                         verifica = true;
-                        //i++;
-                        //verifica = true;
                     } else {
-                        JOptionPane.showMessageDialog(null, " ERRO \n Excedeu a quantidade de caracter");
+                        erro = true;
+                        nome_erro = "Excedeu a quantidade de caracter";
                     }
                     break;
                 default:
@@ -474,8 +462,6 @@ public class Lexico {
                         palavra = String.valueOf(caracter);
                         aux = array[i];
                         while (arraychar.contains(aux)) {
-                            //switch(palavra){
-
                             switch (palavra) {
 
                                 case ">":
@@ -670,52 +656,74 @@ public class Lexico {
 
                         }
                     }
+                    
                     if (arrayinteiro.contains(caracter)) {
                         String pal;
                         char aux1;
                         pal = String.valueOf(caracter);
+                        
                         aux1 = array[i];
                         while (arrayinteiro.contains(aux1)) {
                             if (i + 1 == array.length) {
                                 break;
                             }
-                            aux1 = array[i + 1];
-                            i++;
-                            pal += aux1;
+                            
                             if (i + 1 <= array.length - 1) {
-
                                 if (array[i + 1] == ',') {
                                     confirma = true;
+                                    pal += array[i + 1];
                                     i++;
-
-                                    aux1 = array[i + 1];
-                                    i++;
-                                    pal += aux1;
                                 }
                             }
+                            
+                            aux1 = array[i + 1];
+                            pal += aux1;
+                            i++;
                         }
+                        
                         if (confirma == true) {
-                            confirma = false;
-                            regra = 6;
-                            nome = "numerofloat";
-                            arrayderegras.add(regra);
-                            verifica = true;
-
+                            float valorFloat = Float.parseFloat(pal.replace(',','.'));
+                            String[] split = pal.split(",");
+                            int precision = split[1].length();
+                            
+                            if(precision > 4){
+                                erro = true;
+                                nome_erro = "Número Float Excede a Precisão Máxima";
+                            } else if ((valorFloat >= -3.4E+38) && (valorFloat <= 3.4E+38)) {
+                                confirma = false;
+                                regra = 6;
+                                nome = "numerofloat";
+                                arrayderegras.add(regra);
+                                verifica = true;
+                            } else {
+                                erro = true;
+                                nome_erro = "Número Float Excede o Tamanho Máximo";
+                            }
                         } else {
-                            regra = 5;
-                            nome = "numerointeiro";
-                            arrayderegras.add(regra);
-                            verifica = true;
-
+                            int valorInt = Integer.parseInt(pal);
+                            
+                            if((valorInt >= -32767) && (valorInt <= 32767)){
+                                regra = 5;
+                                nome = "numerointeiro";
+                                arrayderegras.add(regra);
+                                verifica = true;
+                            }else{
+                                erro = true;
+                                nome_erro = "Número Inteiro Excede o Tamanho Máximo";
+                            }
                         }
                     }
                     break;
             }
-
-            if (verifica) {
+            
+            if (erro) {
+                linhasRegras.add("ERRO: " + nome_erro + " linha: " + linha);
+                erro = false;
+            } else if (verifica) {
                 linhasRegras.add("Regra: " + regra + " linha: " + linha + " Token: " + nome);
                 verifica = false;
             }
+            
             if (array[i] == '\n') {
                 linha++;
 
