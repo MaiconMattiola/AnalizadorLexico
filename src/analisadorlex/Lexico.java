@@ -78,7 +78,7 @@ public class Lexico {
         boolean verifica = false;
         boolean confirma = false;
         boolean erro = false;
-        
+
         for (i = 0; i < array.length; i++) {
             char caracter = array[i];
 
@@ -234,7 +234,7 @@ public class Lexico {
                                 erro = true;
                                 i--;
                             }
-                            
+
                             if (!erro) {
                                 if (array[i + 1] == '/') {
                                     regra = 49;
@@ -382,6 +382,7 @@ public class Lexico {
                 case '$':
                     i++;
                     int first = i;
+                    int lenght = 0;
                     while (arrayinteiro.contains(array[i]) || arraychar.contains(array[i])) {
                         if (first == i) {
                             if (arraychar.contains(array[i])) {
@@ -391,16 +392,19 @@ public class Lexico {
                                 nome_erro = "Variavel não pode Começar com Número";
                                 break;
                             }
+
                         } else {
                             i++;
                         }
-                        break;
+                        lenght++;
+                         
                     }
-
+                        System.out.println("o comprimento é" + lenght);
                     if (i == array.length) {
                         break;
                     }
-                    if (i <= 30) {
+                    if (lenght <= 30) {
+                       
                         regra = 7;
                         nome = "nomevariavel";
                         controle++;
@@ -656,18 +660,18 @@ public class Lexico {
 
                         }
                     }
-                    
+
                     if (arrayinteiro.contains(caracter)) {
                         String pal;
                         char aux1;
                         pal = String.valueOf(caracter);
-                        
+
                         aux1 = array[i];
                         while (arrayinteiro.contains(aux1)) {
                             if (i + 1 == array.length) {
                                 break;
                             }
-                            
+
                             if (i + 1 <= array.length - 1) {
                                 if (array[i + 1] == ',') {
                                     confirma = true;
@@ -675,18 +679,18 @@ public class Lexico {
                                     i++;
                                 }
                             }
-                            
+
                             aux1 = array[i + 1];
                             pal += aux1;
                             i++;
                         }
-                        
+
                         if (confirma == true) {
-                            float valorFloat = Float.parseFloat(pal.replace(',','.'));
+                            float valorFloat = Float.parseFloat(pal.replace(',', '.').trim());
                             String[] split = pal.split(",");
                             int precision = split[1].length();
-                            
-                            if(precision > 4){
+
+                            if (precision > 4) {
                                 erro = true;
                                 nome_erro = "Número Float Excede a Precisão Máxima";
                             } else if ((valorFloat >= -3.4E+38) && (valorFloat <= 3.4E+38)) {
@@ -700,14 +704,14 @@ public class Lexico {
                                 nome_erro = "Número Float Excede o Tamanho Máximo";
                             }
                         } else {
-                            int valorInt = Integer.parseInt(pal);
-                            
-                            if((valorInt >= -32767) && (valorInt <= 32767)){
+                            int valorInt = Integer.parseInt(pal.trim());
+
+                            if ((valorInt >= -32767) && (valorInt <= 32767)) {
                                 regra = 5;
                                 nome = "numerointeiro";
                                 arrayderegras.add(regra);
                                 verifica = true;
-                            }else{
+                            } else {
                                 erro = true;
                                 nome_erro = "Número Inteiro Excede o Tamanho Máximo";
                             }
@@ -715,7 +719,7 @@ public class Lexico {
                     }
                     break;
             }
-            
+
             if (erro) {
                 linhasRegras.add("ERRO: " + nome_erro + " linha: " + linha);
                 erro = false;
@@ -723,7 +727,7 @@ public class Lexico {
                 linhasRegras.add("Regra: " + regra + " linha: " + linha + " Token: " + nome);
                 verifica = false;
             }
-            
+
             if (array[i] == '\n') {
                 linha++;
 
