@@ -71,11 +71,12 @@ public class Lexico {
         int linha = 1;
 
         String[] caractere = new String[i];
-        int regra = 0;
+        int codigo = 0;
         String nome = null;
         String nome_erro = null;
         char[] array = Teste.toCharArray();
         boolean verifica = false;
+        boolean comentario = false;
         boolean confirma = false;
         boolean erro = false;
 
@@ -92,35 +93,35 @@ public class Lexico {
                 case '<':
                     if (i < array.length - 1) {
                         if (array[i + 1] == '=') {
-                            regra = 30;
+                            codigo = 30;
                             nome = "<=";
                             controle++;
-                            arrayderegras.add(regra);
-                            System.out.println(regra);
+                            arrayderegras.add(codigo);
+                            System.out.println(codigo);
                             i++;
                             verifica = true;
                         } else if (array[i + 1] == '<') {
-                            regra = 31;
+                            codigo = 31;
                             nome = "<<";
                             controle++;
-                            arrayderegras.add(regra);
-                            System.out.println(regra);
+                            arrayderegras.add(codigo);
+                            System.out.println(codigo);
                             i++;
                             verifica = true;
                         } else if (array[i] == '<') {
-                            regra = 32;
+                            codigo = 32;
                             nome = "<";//tratar espaço
                             controle++;
-                            arrayderegras.add(regra);
-                            System.out.println(regra);
+                            arrayderegras.add(codigo);
+                            System.out.println(codigo);
                             verifica = true;
                         }
                     } else if (array[i] == '<') {
-                        regra = 32;
+                        codigo = 32;
                         nome = "<";//tratar espaço
                         controle++;
-                        arrayderegras.add(regra);
-                        System.out.println(regra);
+                        arrayderegras.add(codigo);
+                        System.out.println(codigo);
                         verifica = true;
                     }
                     break;
@@ -128,26 +129,26 @@ public class Lexico {
                     if (i < array.length - 1) {
                         if (array[i + 1] == '=') {
                             nome = "==";
-                            regra = 28;
+                            codigo = 28;
                             controle++;
-                            System.out.println(regra);
-                            arrayderegras.add(regra);
+                            System.out.println(codigo);
+                            arrayderegras.add(codigo);
                             verifica = true;
                             i++;
                         } else if (array[i] == '=') {
-                            regra = 29;//tratar espaço
+                            codigo = 29;//tratar espaço
                             nome = "=";
                             controle++;
-                            System.out.println(regra);
-                            arrayderegras.add(regra);
+                            System.out.println(codigo);
+                            arrayderegras.add(codigo);
                             verifica = true;
                         }
                     } else if (array[i] == '=') {
-                        regra = 29;//tratar espaço
+                        codigo = 29;//tratar espaço
                         nome = "=";
                         controle++;
-                        System.out.println(regra);
-                        arrayderegras.add(regra);
+                        System.out.println(codigo);
+                        arrayderegras.add(codigo);
                         verifica = true;
                     }
                     break;
@@ -155,67 +156,67 @@ public class Lexico {
                 case '+':
                     if (i < array.length - 1) {
                         if (array[i + 1] == '+') {
-                            regra = 33;
+                            codigo = 33;
                             nome = "++";
                             controle++;
-                            System.out.println(regra);
-                            arrayderegras.add(regra);
+                            System.out.println(codigo);
+                            arrayderegras.add(codigo);
                             verifica = true;
                             i++;
                         } else if (array[i] == '+') {
-                            regra = 34;
+                            codigo = 34;
                             nome = "+";
                             controle++;
-                            System.out.println(regra);
-                            arrayderegras.add(regra);
+                            System.out.println(codigo);
+                            arrayderegras.add(codigo);
                             verifica = true;
                         }
                     } else if (array[i] == '+') {
-                        regra = 34;
+                        codigo = 34;
                         nome = "+";
                         controle++;
-                        System.out.println(regra);
-                        arrayderegras.add(regra);
+                        System.out.println(codigo);
+                        arrayderegras.add(codigo);
                         verifica = true;
                     }
                     break;
                 case '}':
                     if (array[i] == '}') {
-                        regra = 35;
+                        codigo = 35;
                         nome = "}";
                         controle++;
-                        System.out.println(regra);
-                        arrayderegras.add(regra);
+                        System.out.println(codigo);
+                        arrayderegras.add(codigo);
                         verifica = true;
                     }
                     break;
                 case '{':
                     if (array[i] == '{') {
-                        regra = 36;
+                        codigo = 36;
                         nome = "{";
                         controle++;
-                        System.out.println(regra);
-                        arrayderegras.add(regra);
+                        System.out.println(codigo);
+                        arrayderegras.add(codigo);
                         verifica = true;
                     }
                     break;
                 case ';':
                     if (array[i] == ';') {
-                        regra = 37;
+                        codigo = 37;
                         nome = ";";
                         controle++;
-                        System.out.println(regra);
-                        arrayderegras.add(regra);
+                        System.out.println(codigo);
+                        arrayderegras.add(codigo);
                         verifica = true;
                     }
 
                 case ':':
                     if (array[i] == ':') {
-                        regra = 38;
+                        codigo = 38;
                         nome = ":";
                         controle++;
-                        System.out.println(regra);
-                        arrayderegras.add(regra);
+                        System.out.println(codigo);
+                        arrayderegras.add(codigo);
                         verifica = true;
                     }
 
@@ -226,7 +227,7 @@ public class Lexico {
                             i++;
                             try {
                                 while (array[i] != '#') {
-                                    i++;
+                                    i++;        
                                 }
                                 System.out.println(array[i + 1]);
                             } catch (ArrayIndexOutOfBoundsException e) {
@@ -237,91 +238,93 @@ public class Lexico {
 
                             if (!erro) {
                                 if (array[i + 1] == '/') {
-                                    regra = 49;
-                                    nome = "Comentario de bloco";
-                                    controle++;
-                                    System.out.println(regra);
-                                    arrayderegras.add(regra);
+                                    //regra = 49;
+                                    //nome = "Comentario de bloco";
+                                   // controle++;
+                                   // System.out.println(regra);
+                                    //arrayderegras.add(regra);
                                     verifica = true;
+                                    comentario = true;
                                     i++;
                                 }
                             }
+                            
                         } else if (array[i] == '/') {
-                            regra = 39;
+                            codigo = 39;
                             nome = "/";
                             controle++;
-                            System.out.println(regra);
-                            arrayderegras.add(regra);
+                            System.out.println(codigo);
+                            arrayderegras.add(codigo);
                             verifica = true;
                         }
                     } else if (array[i] == '/') {
-                        regra = 39;
+                        codigo = 39;
                         nome = "/";
                         controle++;
-                        System.out.println(regra);
-                        arrayderegras.add(regra);
+                        System.out.println(codigo);
+                        arrayderegras.add(codigo);
                         verifica = true;
                     }
 
                 case ',':
                     if (array[i] == ',') {
-                        regra = 40;
+                        codigo = 40;
                         nome = ",";
                         controle++;
-                        System.out.println(regra);
-                        arrayderegras.add(regra);
+                        System.out.println(codigo);
+                        arrayderegras.add(codigo);
                         verifica = true;
                     }
 
                 case ')':
                     if (array[i] == ')') {
-                        regra = 42;
+                        codigo = 42;
                         nome = ")";
                         controle++;
-                        System.out.println(regra);
+                        System.out.println(codigo);
 
-                        arrayderegras.add(regra);
+                        arrayderegras.add(codigo);
                         verifica = true;
                     }
 
                 case '(':
                     if (array[i] == '(') {
-                        regra = 43;
+                        codigo = 43;
                         nome = "(";
                         controle++;
-                        System.out.println(regra);
-                        arrayderegras.add(regra);
+                        System.out.println(codigo);
+                        arrayderegras.add(codigo);
                         verifica = true;
                     }
 
                 case '@':
                     if (array[i] == '@') {
-                        regra = 44;
+                        codigo = 44;
                         nome = "@";
                         controle++;
-                        System.out.println(regra);
-                        arrayderegras.add(regra);
+                        System.out.println(codigo);
+                        arrayderegras.add(codigo);
                         verifica = true;
                     }
 
                 case '*':
                     if (array[i] == '*') {
-                        regra = 41;
+                        codigo = 41;
                         nome = "*";
                         controle++;
-                        System.out.println(regra);
-                        arrayderegras.add(regra);
+                        System.out.println(codigo);
+                        arrayderegras.add(codigo);
                         verifica = true;
                     }
 
                 case '!':
                     if (i < array.length - 1) {
                         if (array[i + 1] == '=') {
-                            regra = 45;
+                            codigo = 45;
                             nome = "!=";
                             controle++;
-                            System.out.println(regra);
-                            arrayderegras.add(regra);
+                            System.out.println(codigo);
+                            arrayderegras.add(codigo);
                             verifica = true;
                             i++;
 
@@ -331,28 +334,28 @@ public class Lexico {
                 case '-':
                     if (i < array.length - 1) {
                         if (array[i + 1] == '-') {
-                            regra = 46;
+                            codigo = 46;
                             nome = "--";
                             controle++;
-                            System.out.println(regra);
-                            arrayderegras.add(regra);
+                            System.out.println(codigo);
+                            arrayderegras.add(codigo);
                             verifica = true;
                             i++;
 
                         } else if (array[i] == '-') {
-                            regra = 47;
+                            codigo = 47;
                             nome = "-";
                             controle++;
-                            System.out.println(regra);
-                            arrayderegras.add(regra);
+                            System.out.println(codigo);
+                            arrayderegras.add(codigo);
                             verifica = true;
                         }
                     } else if (array[i] == '-') {
-                        regra = 47;
+                        codigo = 47;
                         nome = "-";
                         controle++;
-                        System.out.println(regra);
-                        arrayderegras.add(regra);
+                        System.out.println(codigo);
+                        arrayderegras.add(codigo);
                         verifica = true;
 
                     }
@@ -366,14 +369,15 @@ public class Lexico {
                         while (array[aux] != '\n') {
                             i++;
                             if (i == array.length) {
-                                break;
+                              comentario = true;
+                              break;
                             }
                         }
-                        regra = 48;
-                        nome = "comentario de linha";
+                        //codigo = 48;
+                        //nome = "comentario de linha";
                         controle++;
-                        System.out.println(regra);
-                        arrayderegras.add(regra);
+                        System.out.println(codigo);
+                        arrayderegras.add(codigo);
                         verifica = true;
                         i++;
                     }
@@ -405,11 +409,11 @@ public class Lexico {
                     }
                     if (lenght <= 30) {
                        
-                        regra = 7;
+                        codigo = 7;
                         nome = "nomevariavel";
                         controle++;
-                        System.out.println(regra);
-                        arrayderegras.add(regra);
+                        System.out.println(codigo);
+                        arrayderegras.add(codigo);
 
                         verifica = true;
                     } else {
@@ -427,15 +431,16 @@ public class Lexico {
                         }
                     }
                     if (i <= 2) {
-                        regra = 8;
+                        codigo = 8;
                         nome = "nomedochar";
                         controle++;
-                        System.out.println(regra);
-                        arrayderegras.add(regra);
+                        System.out.println(codigo);
+                        arrayderegras.add(codigo);
                         verifica = true;
                     } else {
                         erro = true;
                         nome_erro = "Excedeu a quantidade de caracter";
+                        
                     }
                     break;
 
@@ -448,11 +453,11 @@ public class Lexico {
                         }
                     }
                     if (i < 256) {
-                        regra = 9;
+                        codigo = 9;
                         nome = "nomedastring";
                         controle++;
-                        System.out.println(regra);
-                        arrayderegras.add(regra);
+                        System.out.println(codigo);
+                        arrayderegras.add(codigo);
                         verifica = true;
                     } else {
                         erro = true;
@@ -469,183 +474,183 @@ public class Lexico {
                             switch (palavra) {
 
                                 case ">":
-                                    regra = 27;
+                                    codigo = 27;
                                     nome = ">";
                                     controle++;
-                                    arrayderegras.add(regra);
+                                    arrayderegras.add(codigo);
                                     verifica = true;
 
                                     break;
                                 case ">>":
-                                    regra = 25;
+                                    codigo = 25;
                                     nome = ">>";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
                                     break;
 
                                 case ">=":
-                                    regra = 26;
+                                    codigo = 26;
                                     nome = ">=";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
                                     break;
 
                                 case "while":
-                                    regra = 1;
+                                    codigo = 1;
                                     nome = "while";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
 
                                     break;
                                 case "void":
-                                    regra = 2;
+                                    codigo = 2;
                                     nome = "void";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
 
                                     break;
 
                                 case "string":
-                                    regra = 3;
+                                    codigo = 3;
                                     nome = "string";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
                                     break;
 
                                 case "return":
-                                    regra = 4;
+                                    codigo = 4;
                                     nome = "return";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
 
                                     break;
 
                                 case "main":
-                                    regra = 10;
+                                    codigo = 10;
                                     nome = "main";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
                                     break;
 
                                 case "integer":
-                                    regra = 12;
+                                    codigo = 12;
                                     nome = "integer";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
                                     break;
 
                                 case "inicio":
-                                    regra = 13;
+                                    codigo = 13;
                                     nome = "inicio";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
                                     break;
 
                                 case "if":
-                                    regra = 14;
+                                    codigo = 14;
                                     nome = "if";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
                                     break;
 
                                 case "for":
-                                    regra = 16;
+                                    codigo = 16;
                                     nome = "for";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
                                     break;
 
                                 case "float":
-                                    regra = 17;
+                                    codigo = 17;
                                     nome = "float";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
                                     break;
 
                                 case "fim":
-                                    regra = 18;
+                                    codigo = 18;
                                     nome = "fim";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
                                     break;
 
                                 case "else":
-                                    regra = 19;
+                                    codigo = 19;
                                     nome = "else";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
                                     break;
 
                                 case "do":
-                                    regra = 20;
+                                    codigo = 20;
                                     nome = "do";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
                                     break;
 
                                 case "cout":
-                                    regra = 21;
+                                    codigo = 21;
                                     nome = "cout";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
                                     break;
 
                                 case "cin":
-                                    regra = 22;
+                                    codigo = 22;
                                     nome = "cin";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
                                     break;
 
                                 case "char":
-                                    regra = 23;
+                                    codigo = 23;
                                     nome = "char";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
                                     break;
 
                                 case "callfuncao":
-                                    regra = 24;
+                                    codigo = 24;
                                     nome = "callfuncao";
                                     controle++;
-                                    arrayderegras.add(regra);
-                                    System.out.println(regra);
+                                    arrayderegras.add(codigo);
+                                    System.out.println(codigo);
                                     verifica = true;
                                     break;
 
@@ -695,9 +700,9 @@ public class Lexico {
                                 nome_erro = "Número Float Excede a Precisão Máxima";
                             } else if ((valorFloat >= -3.4E+38) && (valorFloat <= 3.4E+38)) {
                                 confirma = false;
-                                regra = 6;
+                                codigo = 6;
                                 nome = "numerofloat";
-                                arrayderegras.add(regra);
+                                arrayderegras.add(codigo);
                                 verifica = true;
                             } else {
                                 erro = true;
@@ -707,9 +712,9 @@ public class Lexico {
                             int valorInt = Integer.parseInt(pal.trim());
 
                             if ((valorInt >= -32767) && (valorInt <= 32767)) {
-                                regra = 5;
+                                codigo = 5;
                                 nome = "numerointeiro";
-                                arrayderegras.add(regra);
+                                arrayderegras.add(codigo);
                                 verifica = true;
                             } else {
                                 erro = true;
@@ -723,15 +728,18 @@ public class Lexico {
             if (erro) {
                 linhasRegras.add("ERRO: " + nome_erro + " linha: " + linha);
                 erro = false;
-            } else if (verifica) {
-                linhasRegras.add("Regra: " + regra + " linha: " + linha + " Token: " + nome);
-                verifica = false;
+            } else if (verifica && !comentario){
+                linhasRegras.add("Codigo: " + codigo + " linha: " + linha + " Token: " + nome);
+                verifica = false;         
             }
-
+            comentario = false;
             if (array[i] == '\n') {
                 linha++;
 
             }
+        }
+        if (!verifica){
+        linhasRegras.add("Codigo: 44" + " linha: " + (linha+1) + " Token: Final de arquivo");
         }
 
     }
