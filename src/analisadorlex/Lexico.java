@@ -227,7 +227,7 @@ public class Lexico {
                             i++;
                             try {
                                 while (array[i] != '#') {
-                                    i++;        
+                                    i++;
                                 }
                                 System.out.println(array[i + 1]);
                             } catch (ArrayIndexOutOfBoundsException e) {
@@ -240,15 +240,15 @@ public class Lexico {
                                 if (array[i + 1] == '/') {
                                     //regra = 49;
                                     //nome = "Comentario de bloco";
-                                   // controle++;
-                                   // System.out.println(regra);
+                                    // controle++;
+                                    // System.out.println(regra);
                                     //arrayderegras.add(regra);
                                     verifica = true;
                                     comentario = true;
                                     i++;
                                 }
                             }
-                            
+
                         } else if (array[i] == '/') {
                             codigo = 39;
                             nome = "/";
@@ -364,21 +364,21 @@ public class Lexico {
 
                 case '#':
                     if (array[i] == '#') {
-                        int aux = array.length - 1;
 
-                        while (array[aux] != '\n') {
+                        while (array[i + 1] != '\n') {
                             i++;
-                            if (i == array.length) {
-                              comentario = true;
-                              break;
-                            }
+
                         }
-                        //codigo = 48;
-                        //nome = "comentario de linha";
+                        if (i == array.length) {
+                            comentario = true;
+                            verifica = true;
+                            
+                        }
+
                         controle++;
                         System.out.println(codigo);
                         arrayderegras.add(codigo);
-                        verifica = true;
+                        
                         i++;
                     }
                     break;
@@ -401,14 +401,14 @@ public class Lexico {
                             i++;
                         }
                         lenght++;
-                         
+
                     }
-                        System.out.println("o comprimento é" + lenght);
+                    System.out.println("o comprimento é" + lenght);
                     if (i == array.length) {
                         break;
                     }
                     if (lenght <= 30) {
-                       
+
                         codigo = 7;
                         nome = "nomevariavel";
                         controle++;
@@ -424,13 +424,15 @@ public class Lexico {
 
                 case '\'':
                     i++;
+                    int c = 0;
                     while (array[i] != '\'') {
                         i++;
+                        c++;
                         if (i == array.length) {
                             break;
                         }
                     }
-                    if (i <= 2) {
+                    if (c < 2) {
                         codigo = 8;
                         nome = "nomedochar";
                         controle++;
@@ -440,7 +442,7 @@ public class Lexico {
                     } else {
                         erro = true;
                         nome_erro = "Excedeu a quantidade de caracter";
-                        
+
                     }
                     break;
 
@@ -728,9 +730,10 @@ public class Lexico {
             if (erro) {
                 linhasRegras.add("ERRO: " + nome_erro + " linha: " + linha);
                 erro = false;
-            } else if (verifica && !comentario){
+                break;
+            } else if (verifica && !comentario) {
                 linhasRegras.add("Codigo: " + codigo + " linha: " + linha + " Token: " + nome);
-                verifica = false;         
+                verifica = false;
             }
             comentario = false;
             if (array[i] == '\n') {
@@ -738,8 +741,8 @@ public class Lexico {
 
             }
         }
-        if (!verifica){
-        linhasRegras.add("Codigo: 44" + " linha: " + (linha+1) + " Token: Final de arquivo");
+        if (!verifica) {
+            linhasRegras.add("Codigo: 44" + " linha: " + (linha + 1) + " Token: Final de arquivo");
         }
 
     }
