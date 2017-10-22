@@ -9,6 +9,8 @@ import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -144,21 +146,25 @@ public class Editor extends javax.swing.JFrame {
 
     private void btnExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExecutarActionPerformed
 
-        String ler = textocod.getText();
-        Lexico lexico = new Lexico();
-        lexico.Teste = ler;
-        lexico.token();
-
-        List<String> regras = new ArrayList();
-        regras.addAll(lexico.getRegras());
-        StringBuilder texto = new StringBuilder();
-        for (int i = 0; i < regras.size(); i++) {
-            texto.append(regras.get(i));
-            texto.append("\n");
-
+        try {
+            String ler = textocod.getText();
+            Lexico lexico = new Lexico();
+            lexico.Teste = ler;
+            lexico.token();
+            
+            List<String> regras = new ArrayList();
+            regras.addAll(lexico.getRegras());
+            StringBuilder texto = new StringBuilder();
+            for (int i = 0; i < regras.size(); i++) {
+                texto.append(regras.get(i));
+                texto.append("\n");
+                
+            }
+            
+            texto2.setText(texto.toString());
+        } catch (Exception ex) {
+            Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        texto2.setText(texto.toString());
     }//GEN-LAST:event_btnExecutarActionPerformed
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
