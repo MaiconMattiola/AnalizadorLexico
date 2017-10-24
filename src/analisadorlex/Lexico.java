@@ -98,7 +98,7 @@ public class Lexico {
                                 nome = "<=";
                                 controle++;
                                 arrayderegras.add(codigo);
-                                System.out.println(codigo);
+                                
                                 i++;
                                 verifica = true;
                             } else if (array[i + 1] == '<') {
@@ -106,7 +106,7 @@ public class Lexico {
                                 nome = "<<";
                                 controle++;
                                 arrayderegras.add(codigo);
-                                System.out.println(codigo);
+                                
                                 i++;
                                 verifica = true;
                             } else if (array[i] == '<') {
@@ -114,7 +114,7 @@ public class Lexico {
                                 nome = "<";//tratar espaço
                                 controle++;
                                 arrayderegras.add(codigo);
-                                System.out.println(codigo);
+                                
                                 verifica = true;
                             }
                         } else if (array[i] == '<') {
@@ -122,7 +122,7 @@ public class Lexico {
                             nome = "<";//tratar espaço
                             controle++;
                             arrayderegras.add(codigo);
-                            System.out.println(codigo);
+                            
                             verifica = true;
                         }
                         break;
@@ -132,7 +132,7 @@ public class Lexico {
                                 nome = "==";
                                 codigo = 28;
                                 controle++;
-                                System.out.println(codigo);
+                                
                                 arrayderegras.add(codigo);
                                 verifica = true;
                                 i++;
@@ -140,7 +140,7 @@ public class Lexico {
                                 codigo = 29;//tratar espaço
                                 nome = "=";
                                 controle++;
-                                System.out.println(codigo);
+                                
                                 arrayderegras.add(codigo);
                                 verifica = true;
                             }
@@ -148,7 +148,7 @@ public class Lexico {
                             codigo = 29;//tratar espaço
                             nome = "=";
                             controle++;
-                            System.out.println(codigo);
+                            
                             arrayderegras.add(codigo);
                             verifica = true;
                         }
@@ -160,7 +160,7 @@ public class Lexico {
                                 codigo = 33;
                                 nome = "++";
                                 controle++;
-                                System.out.println(codigo);
+                                
                                 arrayderegras.add(codigo);
                                 verifica = true;
                                 i++;
@@ -168,7 +168,7 @@ public class Lexico {
                                 codigo = 34;
                                 nome = "+";
                                 controle++;
-                                System.out.println(codigo);
+                                
                                 arrayderegras.add(codigo);
                                 verifica = true;
                             }
@@ -176,7 +176,7 @@ public class Lexico {
                             codigo = 34;
                             nome = "+";
                             controle++;
-                            System.out.println(codigo);
+                            
                             arrayderegras.add(codigo);
                             verifica = true;
                         }
@@ -186,7 +186,7 @@ public class Lexico {
                             codigo = 35;
                             nome = "}";
                             controle++;
-                            System.out.println(codigo);
+                            
                             arrayderegras.add(codigo);
                             verifica = true;
                         }
@@ -196,7 +196,7 @@ public class Lexico {
                             codigo = 36;
                             nome = "{";
                             controle++;
-                            System.out.println(codigo);
+                            
                             arrayderegras.add(codigo);
                             verifica = true;
                         }
@@ -206,7 +206,7 @@ public class Lexico {
                             codigo = 37;
                             nome = ";";
                             controle++;
-                            System.out.println(codigo);
+                            
                             arrayderegras.add(codigo);
                             verifica = true;
                         }
@@ -216,7 +216,7 @@ public class Lexico {
                             codigo = 38;
                             nome = ":";
                             controle++;
-                            System.out.println(codigo);
+                            
                             arrayderegras.add(codigo);
                             verifica = true;
                         }
@@ -254,7 +254,7 @@ public class Lexico {
                                 codigo = 39;
                                 nome = "/";
                                 controle++;
-                                System.out.println(codigo);
+                                
                                 arrayderegras.add(codigo);
                                 verifica = true;
                             }
@@ -262,7 +262,7 @@ public class Lexico {
                             codigo = 39;
                             nome = "/";
                             controle++;
-                            System.out.println(codigo);
+                            
                             arrayderegras.add(codigo);
                             verifica = true;
                         }
@@ -272,7 +272,7 @@ public class Lexico {
                             codigo = 40;
                             nome = ",";
                             controle++;
-                            System.out.println(codigo);
+                            
                             arrayderegras.add(codigo);
                             verifica = true;
                         }
@@ -282,7 +282,7 @@ public class Lexico {
                             codigo = 42;
                             nome = ")";
                             controle++;
-                            System.out.println(codigo);
+                            
 
                             arrayderegras.add(codigo);
                             verifica = true;
@@ -293,7 +293,7 @@ public class Lexico {
                             codigo = 43;
                             nome = "(";
                             controle++;
-                            System.out.println(codigo);
+                            
                             arrayderegras.add(codigo);
                             verifica = true;
                         }
@@ -303,7 +303,7 @@ public class Lexico {
                             codigo = 44;
                             nome = "@";
                             controle++;
-                            System.out.println(codigo);
+                            
                             arrayderegras.add(codigo);
                             verifica = true;
                         }
@@ -313,7 +313,7 @@ public class Lexico {
                             codigo = 41;
                             nome = "*";
                             controle++;
-                            System.out.println(codigo);
+                            
                             arrayderegras.add(codigo);
                             verifica = true;
                         }
@@ -324,7 +324,7 @@ public class Lexico {
                                 codigo = 45;
                                 nome = "!=";
                                 controle++;
-                                System.out.println(codigo);
+                                
                                 arrayderegras.add(codigo);
                                 verifica = true;
                                 i++;
@@ -338,7 +338,7 @@ public class Lexico {
                                 codigo = 46;
                                 nome = "--";
                                 controle++;
-                                System.out.println(codigo);
+                                
                                 arrayderegras.add(codigo);
                                 verifica = true;
                                 i++;
@@ -347,7 +347,7 @@ public class Lexico {
                                 codigo = 47;
                                 nome = "-";
                                 controle++;
-                                System.out.println(codigo);
+                                
                                 arrayderegras.add(codigo);
                                 verifica = true;
                             }
@@ -355,7 +355,7 @@ public class Lexico {
                             codigo = 47;
                             nome = "-";
                             controle++;
-                            System.out.println(codigo);
+                            
                             arrayderegras.add(codigo);
                             verifica = true;
 
@@ -377,7 +377,7 @@ public class Lexico {
                             }
 
                             controle++;
-                            System.out.println(codigo);
+                            
                             arrayderegras.add(codigo);
 
                             i++;
@@ -404,7 +404,6 @@ public class Lexico {
                             lenght++;
 
                         }
-                        System.out.println("o comprimento é" + lenght);
                         if (i == array.length) {
                             break;
                         }
@@ -413,7 +412,7 @@ public class Lexico {
                             codigo = 7;
                             nome = "nomevariavel";
                             controle++;
-                            System.out.println(codigo);
+                            
                             arrayderegras.add(codigo);
 
                             verifica = true;
@@ -437,7 +436,7 @@ public class Lexico {
                             codigo = 8;
                             nome = "nomedochar";
                             controle++;
-                            System.out.println(codigo);
+                            
                             arrayderegras.add(codigo);
                             verifica = true;
                         } else {
@@ -456,10 +455,10 @@ public class Lexico {
                             }
                         }
                         if (i < 256) {
-                            codigo = 9;
-                            nome = "nomedastring";
+                            codigo = 11;
+                            nome = "literal";
                             controle++;
-                            System.out.println(codigo);
+                            
                             arrayderegras.add(codigo);
                             verifica = true;
                         } else {
@@ -489,7 +488,7 @@ public class Lexico {
                                         nome = ">>";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
                                         break;
 
@@ -498,7 +497,7 @@ public class Lexico {
                                         nome = ">=";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
                                         break;
 
@@ -507,7 +506,7 @@ public class Lexico {
                                         nome = "while";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
 
                                         break;
@@ -516,7 +515,7 @@ public class Lexico {
                                         nome = "void";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
 
                                         break;
@@ -526,7 +525,7 @@ public class Lexico {
                                         nome = "string";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
                                         break;
 
@@ -535,7 +534,7 @@ public class Lexico {
                                         nome = "return";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
 
                                         break;
@@ -545,7 +544,7 @@ public class Lexico {
                                         nome = "main";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
                                         break;
 
@@ -554,7 +553,7 @@ public class Lexico {
                                         nome = "integer";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
                                         break;
 
@@ -563,7 +562,7 @@ public class Lexico {
                                         nome = "inicio";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
                                         break;
 
@@ -572,7 +571,7 @@ public class Lexico {
                                         nome = "if";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
                                         break;
 
@@ -581,7 +580,7 @@ public class Lexico {
                                         nome = "for";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
                                         break;
 
@@ -590,7 +589,7 @@ public class Lexico {
                                         nome = "float";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
                                         break;
 
@@ -599,7 +598,7 @@ public class Lexico {
                                         nome = "fim";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
                                         break;
 
@@ -608,7 +607,7 @@ public class Lexico {
                                         nome = "else";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
                                         break;
 
@@ -617,7 +616,7 @@ public class Lexico {
                                         nome = "do";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
                                         break;
 
@@ -626,7 +625,7 @@ public class Lexico {
                                         nome = "cout";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
                                         break;
 
@@ -635,7 +634,7 @@ public class Lexico {
                                         nome = "cin";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
                                         break;
 
@@ -644,7 +643,7 @@ public class Lexico {
                                         nome = "char";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
                                         break;
 
@@ -653,7 +652,7 @@ public class Lexico {
                                         nome = "callfuncao";
                                         controle++;
                                         arrayderegras.add(codigo);
-                                        System.out.println(codigo);
+                                        
                                         verifica = true;
                                         break;
 

@@ -14,10 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
-/**
- *
- * @author zardin
- */
+
 public class Sintatico {
 
     private int tabelaParsing[][] = new int[100][100];
@@ -128,24 +125,31 @@ public class Sintatico {
                 pilha.pop();
                 X = pilha.peek();
             } else {
-                if (X <= 43) { // terminal?
+                if (X <= 47) { // terminal?
                     if (X == a) {
-                        System.err.println(pilha);
                         pilha.pop();
                         inLooping = false;
                     } else {
+                        System.err.println(X + "==" + a);
+                        //System.err.println("Pilha = " + pilha);
                         throw new Exception("Erro sintático 1");
                     }
                 } else {
-                    if (X >= 44 && X <= 72) { // não terminal?
+                    if (X >= 48 && X <= 76) { // não terminal?
                         if (this.regra(X, a) > 0) { // regra existe?
                             pilha.pop();
                             regraTemp = regra[this.regra(X, a) - 1];
+                            //System.err.println("PARSING regra("+X+","+a+") - REGRA: "+(this.regra(X, a)));
                             for (int i = regraTemp.length; i > 0; i--) {
                                 pilha.push(regraTemp[i - 1]);
+                                if(regraTemp[i - 1] == 35){
+                                    System.err.println("PARSING regra("+X+","+a+") - REGRA: "+(this.regra(X, a)));
+                                }
+                                //System.err.println("ELEMENTO : "+regraTemp[i - 1]);
                             }
                             X = pilha.peek();
                         } else {
+                            System.err.println("PARSING regra("+X+","+a+")");
                             throw new Exception("Erro sintático 2");
                         }
                     }
@@ -266,10 +270,10 @@ public class Sintatico {
         tabelaParsing[61][20] = 67;
         tabelaParsing[61][21] = 69;
         tabelaParsing[61][22] = 68;
-        tabelaParsing[61][24] = 39;
+        tabelaParsing[61][24] = 39; 
         tabelaParsing[61][37] = 38;
         tabelaParsing[61][43] = 37;
-        tabelaParsing[62][18] = 33;
+        tabelaParsing[62][18] = 32;
         tabelaParsing[62][35] = 33;
         tabelaParsing[63][5] = 75;
         tabelaParsing[63][6] = 75;
@@ -384,16 +388,16 @@ public class Sintatico {
             /*46*/ {6},
             /*47*/ {8},
             /*48*/ {7},
-            /*49*/ {14, 43, 7, 67, 36, 61, 37, 62, 35, 68},
+            /*49*/ {14, 43, 7, 67, 42, 36, 61, 37, 62, 35, 68},
             /*50*/ {19, 36, 61, 37, 62, 35},
             /*51*/ {15},
             /*52*/ {1, 43, 7, 67, 42, 36, 61, 37, 62, 35},
-            /*53*/ {28, 6},
-            /*54*/ {45, 6},
-            /*55*/ {27, 6},
-            /*56*/ {26, 6},
-            /*57*/ {32, 6},
-            /*58*/ {30, 6},
+            /*53*/ {28, 69},
+            /*54*/ {45, 69},
+            /*55*/ {27, 69},
+            /*56*/ {26, 69},
+            /*57*/ {32, 69},
+            /*58*/ {30, 69},
             /*59*/ {5},
             /*60*/ {6},
             /*61*/ {9},
