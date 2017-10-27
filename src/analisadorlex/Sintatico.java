@@ -59,7 +59,7 @@ public class Sintatico {
 
     static {
         terminais = new HashMap<>();
-        terminais.put("while", 1);                                                            
+        terminais.put("while", 1);                                                          
         terminais.put("void", 2);                                                             
         terminais.put("string", 3);                                                           
         terminais.put("return", 4);                                                           
@@ -69,7 +69,7 @@ public class Sintatico {
         terminais.put("nomedochar", 8);                                                               
         terminais.put("nomedastring", 9);                                                             
         terminais.put("main", 10);                                                            
-        terminais.put("literal", 11);                                                         
+        terminais.put("literal", 11);                                            
         terminais.put("integer", 12);                                                         
         terminais.put("inicio", 13);                                                          
         terminais.put("if", 14);                                                              
@@ -120,6 +120,7 @@ public class Sintatico {
         int regraTemp[];
         int X;
         X = pilha.peek();
+        System.err.println("pilha "+pilha);
         while (inLooping) {
             if (X == 15) { // vazio
                 pilha.pop();
@@ -127,6 +128,7 @@ public class Sintatico {
             } else {
                 if (X <= 47) { // terminal?
                     if (X == a) {
+                        System.err.println("Desempilhando "+a);
                         pilha.pop();
                         inLooping = false;
                     } else {
@@ -136,20 +138,26 @@ public class Sintatico {
                     }
                 } else {
                     if (X >= 48 && X <= 76) { // não terminal?
+                        if(X == 71){
+                            System.err.println("REGRA: "+(this.regra(X, a)) + "PARSING regra("+X+","+a+")");
+                            //System.err.println("REGRA "+X+" ELEMENTO : "+regraTemp[i - 1]);
+                        }
                         if (this.regra(X, a) > 0) { // regra existe?
                             pilha.pop();
                             regraTemp = regra[this.regra(X, a) - 1];
                             //System.err.println("PARSING regra("+X+","+a+") - REGRA: "+(this.regra(X, a)));
+                            
                             for (int i = regraTemp.length; i > 0; i--) {
                                 pilha.push(regraTemp[i - 1]);
-                                if(regraTemp[i - 1] == 35){
-                                    System.err.println("PARSING regra("+X+","+a+") - REGRA: "+(this.regra(X, a)));
+                                if(X == 61){
+                                    System.err.println("PARSING regra("+X+","+a+") - REGRA: "+(this.regra(X, a))+" ELEMENTO : "+regraTemp[i - 1]);
+                                    //System.err.println("REGRA "+X+" ELEMENTO : "+regraTemp[i - 1]);
                                 }
-                                //System.err.println("ELEMENTO : "+regraTemp[i - 1]);
+                                
                             }
                             X = pilha.peek();
                         } else {
-                            System.err.println("PARSING regra("+X+","+a+")");
+                            //System.err.println("PARSING regra("+X+","+a+")");
                             throw new Exception("Erro sintático 2");
                         }
                     }
@@ -352,7 +360,7 @@ public class Sintatico {
             /*10*/ {15},
             /*11*/ {55, 38, 53, 37, 54},
             /*12*/ {7, 5},
-            /*13*/ {56, 7, 57, 36, 49, 50, 51, 4, 43, 58, 42, 35, 50},
+            /*13*/ {56, 7, 57, 36, 49, 50, 51, 4, 43, 58, 42, 35, 50}, 
             /*14*/ {12},
             /*15*/ {2},
             /*16*/ {23},
@@ -403,7 +411,7 @@ public class Sintatico {
             /*61*/ {9},
             /*62*/ {8},
             /*63*/ {7},
-            /*64*/ {16, 43, 7, 29, 69, 37, 7, 67, 37, 70, 42, 36, 61, 37, 62, 35},
+            /*64*/ {16, 43, 7, 29, 69, 37, 7, 67, 37, 70, 42, 36, 61, 37, 62, 35}, 
             /*65*/ {33, 5},
             /*66*/ {46, 5},
             /*67*/ {20, 36, 61, 37, 62, 35, 1, 43, 7, 67, 42},

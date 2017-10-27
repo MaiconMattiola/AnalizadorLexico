@@ -574,6 +574,14 @@ public class Lexico {
                                         
                                         verifica = true;
                                         break;
+                                    case "î":
+                                        codigo = 15;
+                                        nome = " ";
+                                        controle++;
+                                        arrayderegras.add(codigo);
+                                        
+                                        verifica = true;
+                                        break;
 
                                     case "for":
                                         codigo = 16;
