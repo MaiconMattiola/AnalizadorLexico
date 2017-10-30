@@ -38,6 +38,8 @@ public class Editor extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         texto2 = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textoPilha = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         btnArquivo = new javax.swing.JMenu();
         btnExecutar = new javax.swing.JRadioButtonMenuItem();
@@ -60,6 +62,10 @@ public class Editor extends javax.swing.JFrame {
         jScrollPane2.setViewportView(texto2);
 
         jLabel2.setText("jLabel2");
+
+        textoPilha.setColumns(20);
+        textoPilha.setRows(5);
+        jScrollPane3.setViewportView(textoPilha);
 
         btnArquivo.setText("Arquivo");
 
@@ -119,15 +125,23 @@ public class Editor extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
         );
 
         pack();
@@ -149,9 +163,10 @@ public class Editor extends javax.swing.JFrame {
         try {
             String ler = textocod.getText();
             Lexico lexico = new Lexico();
+            Sintatico sintatico = new Sintatico();
             lexico.Teste = ler;
             lexico.token();
-            
+  
             List<String> regras = new ArrayList();
             regras.addAll(lexico.getRegras());
             StringBuilder texto = new StringBuilder();
@@ -161,6 +176,7 @@ public class Editor extends javax.swing.JFrame {
                 
             }
             
+            textoPilha.setText(sintatico.getPilha().toString());
             texto2.setText(texto.toString());
         } catch (Exception ex) {
             Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
@@ -266,7 +282,7 @@ public class Editor extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Abrir;
     private javax.swing.JMenuItem Salvar;
@@ -280,7 +296,9 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea texto2;
+    private javax.swing.JTextArea textoPilha;
     private javax.swing.JTextArea textocod;
     // End of variables declaration//GEN-END:variables
 }

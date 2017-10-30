@@ -14,7 +14,7 @@ public class Lexico {
     ArrayList<String> simbolos = new ArrayList<>();
     List<String> linhasRegras = new ArrayList<>();
 
-    //Adicionado por Ramon para exibir a regra com a linha
+
     public List<String> getRegras() {
         return linhasRegras;
     }

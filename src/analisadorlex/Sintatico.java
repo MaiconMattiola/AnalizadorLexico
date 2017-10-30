@@ -9,20 +9,23 @@ package analisadorlex;
  *
  * @author MATTIOLA
  */
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
 
 public class Sintatico {
-
+    
     private int tabelaParsing[][] = new int[100][100];
     private int regra[][];
     private Stack<Integer> pilha;
     public static final Map<String, Integer> terminais;
     public static final Map<String, Integer> naoTerminais;
 
+    public  Stack<Integer> getPilha() {
+    return pilha;
+    }
+    
     static {
         naoTerminais = new HashMap<>();
         naoTerminais.put("BLOCO", 48);
@@ -114,7 +117,6 @@ public class Sintatico {
         pilha.push(48); // inicial
         this.populaMatriz();
     }
-
     public void push(int a) throws Exception {
         Boolean inLooping = true;
         int regraTemp[];
@@ -128,18 +130,18 @@ public class Sintatico {
             } else {
                 if (X <= 47) { // terminal?
                     if (X == a) {
-                        System.err.println("Desempilhando "+a);
+                        //System.err.println("Desempilhando "+a);
                         pilha.pop();
                         inLooping = false;
                     } else {
-                        System.err.println(X + "==" + a);
+                        //System.err.println(X + "==" + a);
                         //System.err.println("Pilha = " + pilha);
                         throw new Exception("Erro sintático 1");
                     }
                 } else {
                     if (X >= 48 && X <= 76) { // não terminal?
                         if(X == 71){
-                            System.err.println("REGRA: "+(this.regra(X, a)) + "PARSING regra("+X+","+a+")");
+                           //System.err.println("REGRA: "+(this.regra(X, a)) + "PARSING regra("+X+","+a+")");
                             //System.err.println("REGRA "+X+" ELEMENTO : "+regraTemp[i - 1]);
                         }
                         if (this.regra(X, a) > 0) { // regra existe?
@@ -150,7 +152,7 @@ public class Sintatico {
                             for (int i = regraTemp.length; i > 0; i--) {
                                 pilha.push(regraTemp[i - 1]);
                                 if(X == 61){
-                                    System.err.println("PARSING regra("+X+","+a+") - REGRA: "+(this.regra(X, a))+" ELEMENTO : "+regraTemp[i - 1]);
+                                    //System.err.println("PARSING regra("+X+","+a+") - REGRA: "+(this.regra(X, a))+" ELEMENTO : "+regraTemp[i - 1]);
                                     //System.err.println("REGRA "+X+" ELEMENTO : "+regraTemp[i - 1]);
                                 }
                                 
@@ -166,14 +168,14 @@ public class Sintatico {
         }
         //pilha.push(a);
     }
-
+    
     public void processaSintatico() throws Exception {
     }
 
     void throwFinalArquivo() throws Exception {
         if (pilha.peek() == 44) {
             pilha.pop();
-            throw new Exception("Código: 42, final de arquivo\n");
+            throw new Exception("Código: 44,  de arquivo\n");
         }
         else
         {
@@ -282,7 +284,7 @@ public class Sintatico {
         tabelaParsing[61][37] = 38;
         tabelaParsing[61][43] = 37;
         tabelaParsing[62][18] = 32;
-        tabelaParsing[62][35] = 33;
+        tabelaParsing[62][35] = 32;
         tabelaParsing[63][5] = 75;
         tabelaParsing[63][6] = 75;
         tabelaParsing[63][7] = 75;
