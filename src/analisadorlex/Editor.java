@@ -175,9 +175,17 @@ public class Editor extends javax.swing.JFrame {
                 texto.append("\n");
                 
             }
-            
-            textoPilha.setText(sintatico.getPilha().toString());
             texto2.setText(texto.toString());
+            
+            List<String> pilhas = new ArrayList();
+            pilhas.addAll(lexico.getPilhas());
+            StringBuilder textoP = new StringBuilder();
+            for (int i = 0; i < pilhas.size(); i++) {
+                textoP.append(pilhas.get(i));
+                textoP.append("\n");
+                
+            }
+            textoPilha.setText(textoP.toString());
         } catch (Exception ex) {
             Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
         }

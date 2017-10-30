@@ -23,7 +23,7 @@ public class Sintatico {
     public static final Map<String, Integer> naoTerminais;
 
     public  Stack<Integer> getPilha() {
-    return pilha;
+        return pilha;
     }
     
     static {
@@ -130,43 +130,28 @@ public class Sintatico {
             } else {
                 if (X <= 47) { // terminal?
                     if (X == a) {
-                        //System.err.println("Desempilhando "+a);
                         pilha.pop();
                         inLooping = false;
                     } else {
-                        //System.err.println(X + "==" + a);
-                        //System.err.println("Pilha = " + pilha);
-                        throw new Exception("Erro sintático 1");
+                        throw new Exception("Erro sintático");
                     }
                 } else {
                     if (X >= 48 && X <= 76) { // não terminal?
-                        if(X == 71){
-                           //System.err.println("REGRA: "+(this.regra(X, a)) + "PARSING regra("+X+","+a+")");
-                            //System.err.println("REGRA "+X+" ELEMENTO : "+regraTemp[i - 1]);
-                        }
                         if (this.regra(X, a) > 0) { // regra existe?
                             pilha.pop();
                             regraTemp = regra[this.regra(X, a) - 1];
-                            //System.err.println("PARSING regra("+X+","+a+") - REGRA: "+(this.regra(X, a)));
                             
                             for (int i = regraTemp.length; i > 0; i--) {
                                 pilha.push(regraTemp[i - 1]);
-                                if(X == 61){
-                                    //System.err.println("PARSING regra("+X+","+a+") - REGRA: "+(this.regra(X, a))+" ELEMENTO : "+regraTemp[i - 1]);
-                                    //System.err.println("REGRA "+X+" ELEMENTO : "+regraTemp[i - 1]);
-                                }
-                                
                             }
                             X = pilha.peek();
                         } else {
-                            //System.err.println("PARSING regra("+X+","+a+")");
-                            throw new Exception("Erro sintático 2");
+                            throw new Exception("Erro sintático");
                         }
                     }
                 }
             }
         }
-        //pilha.push(a);
     }
     
     public void processaSintatico() throws Exception {

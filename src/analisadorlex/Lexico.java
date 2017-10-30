@@ -11,12 +11,16 @@ public class Lexico {
     List<Character> arraychar;
     List<Character> arrayinteiro;
     int controle;
-    ArrayList<String> simbolos = new ArrayList<>();
+    List<String> linhasPilhas = new ArrayList<>();
     List<String> linhasRegras = new ArrayList<>();
 
 
     public List<String> getRegras() {
         return linhasRegras;
+    }
+    
+    public List<String> getPilhas() {
+        return linhasPilhas;
     }
 
     public Lexico() {
@@ -741,6 +745,7 @@ public class Lexico {
                     break;
                 } else if (verifica && !comentario) {
                     linhasRegras.add("Codigo: " + codigo + " linha: " + linha + " Token: " + nome);
+                    linhasPilhas.add(pilha.getPilha().toString());
                     pilha.push((int) codigo);
                     verifica = false;
                 }
