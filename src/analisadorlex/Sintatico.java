@@ -153,52 +153,7 @@ public class Sintatico {
             }
         }
     }
-    
-    public void processaSintatico() throws Exception {
-    }
-
-    void throwFinalArquivo() throws Exception {
-        if (pilha.peek() == 44) {
-            pilha.pop();
-            throw new Exception("Código: 44,  de arquivo\n");
-        }
-        else
-        {
-            throw new Exception("Erro sintático (pilha não está vazia)");
-        }
-    }
-
-    public static Boolean isTerminal(int codigo) {
-        return terminais.containsValue(codigo);
-    }
-
-    public static int getCodigoToken(String token) throws Exception {
-        int codigo = 0;
-        try {
-            codigo = terminais.get(token);
-        } catch (Exception e) {
-        }
-        if (codigo == 0) {
-            if (token.matches("^\\d+$")) {
-                return 8;
-            } else {
-                if (token.matches("^[a-zA-Z]+$")) {
-                    if (token.length() < 50) {
-                        return 14;
-                    } else {
-                        throw new Exception("ERRO: Número de caracteres excedidos");
-                    }
-                }
-            }
-        }
-        return codigo;
-    }
-
-    static boolean isAcaoSemantica(int codigo) {
-        // implementar
-        return false;
-    }
-
+              
     private int regra(int X, int a) {
         return tabelaParsing[X][a];
     }
@@ -270,6 +225,7 @@ public class Sintatico {
         tabelaParsing[61][43] = 37;
         tabelaParsing[62][18] = 32;
         tabelaParsing[62][35] = 32;
+        //tabelaParsing[62][35] = 33;
         tabelaParsing[63][5] = 75;
         tabelaParsing[63][6] = 75;
         tabelaParsing[63][7] = 75;
@@ -333,7 +289,6 @@ public class Sintatico {
         tabelaParsing[76][42] = 81;
         tabelaParsing[76][47] = 81;
 
-        int[][] matriz = new int[][]{};
         regra = new int[][]{
             /*1*/  {2, 10, 36, 49, 50, 51, 35},
             /*2*/  {7, 52, 38, 53, 37, 54},
