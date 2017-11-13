@@ -331,7 +331,9 @@ public class Lexico {
                         i++;
                         int first = i;
                         int lenght = 0;
+                        String nomeVar = "$";
                         while (arrayinteiro.contains(array[i]) || arraychar.contains(array[i])) {
+                             nomeVar += array[i];
                             if (first == i) {
                                 if (arraychar.contains(array[i])) {
                                     i++;
@@ -345,7 +347,6 @@ public class Lexico {
                                 i++;
                             }
                             lenght++;
-
                         }
                         if (i == array.length) {
                             break;
@@ -353,7 +354,7 @@ public class Lexico {
                         if (lenght <= 30) {
 
                             codigo = 7;
-                            nome = "nomevariavel";
+                            nome = nomeVar;
                             controle++;
 
                             verifica = true;
@@ -640,7 +641,7 @@ public class Lexico {
                 } else if (verifica && !comentario) {
                     linhasRegras.add("Codigo: " + codigo + " linha: " + linha + " Token: " + nome);
                     linhasPilhas.add(pilha.getPilha().toString());
-                    pilha.push((int) codigo);
+                    pilha.push((int) codigo, nome);
                     verifica = false;
                 }
                 comentario = false;
