@@ -141,10 +141,22 @@ public class Sintatico {
                                     System.err.println(token);
                                     semantico.insereSimbolo(token, 1);
                                     break; 
-                                case 101 : break;   
-                                case 102 : break;
-                                case 103 : break;
-                                case 104 : break;
+                                case 101 : 
+                                    System.err.println(token);
+                                    semantico.insereTipo(token);
+                                    break;   
+                                case 102 : 
+                                    System.err.println(token);
+                                    semantico.insereFuncao(token, 2);
+                                    break;
+                                case 103 : 
+                                    System.err.println(token);
+                                    semantico.verificaSimbolo(token, 1);
+                                    break;
+                                case 104 : 
+                                    System.err.println(token);
+                                    semantico.verificaFuncao(token, 2);
+                                    break;
                                 case 105 : break;
                                 case 106 : break;
                                 case 107 : break;
@@ -360,7 +372,7 @@ public class Sintatico {
             /*46*/ {6},
             /*47*/ {8},
             /*48*/ {7, 103},
-            /*49*/ {14, 43, 7, 103, 107, 67, 107, 42, 36, 61, 37, 62, 35, 68},
+            /*49*/ {14, 43, 7, 103, 107, 67, 42, 36, 61, 37, 62, 35, 68},
             /*50*/ {19, 36, 61, 37, 62, 35},
             /*51*/ {15},
             /*52*/ {1, 43, 7, 103, 107, 67, 107, 42, 36, 61, 37, 62, 35},
