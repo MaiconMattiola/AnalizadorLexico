@@ -27,5 +27,16 @@ public class semantico {
         if (nome.equals("float")){
         tabela.insereTipo(2);
         }
+        if (nome.equals("string")){
+        tabela.insereTipo(3);
+        }
+        if (nome.equals("char")){
+        tabela.insereTipo(4);
+        }
+    }
+    public void VerificaTipos (String nome, int tipo)throws Exception{
+        if (!tabela.VerificaTipo(nome, tipo)){
+         throw new Exception("Tipo de dados diferentes");
+        }
     }
 }

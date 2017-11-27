@@ -46,10 +46,17 @@ public class TabelaDeSimbolos {
             throw new Exception("A função não foi declarada!");
         }
     }
-
     public boolean isDeclarado(String nome) {
         for (Simbolo s : tabela) {
             if (s.getNome().equals(nome)) {
+                return true;
+            }
+        }
+        return false;
+    }
+      public boolean VerificaTipo(String nome, int tipo) {
+        for (Simbolo s : tabela) {
+            if (s.getNome().equals(nome) && s.getTipo()==tipo) {
                 return true;
             }
         }

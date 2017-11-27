@@ -158,8 +158,36 @@ public class Sintatico {
                                     semantico.verificaFuncao(token, 2);
                                     break;
                                 case 105 : break;
-                                case 106 : break;
-                                case 107 : break;
+                                case 106 : 
+                                    System.err.println(token);
+                                    if (token.equals("integer")){
+                                    semantico.VerificaTipos(token, 1);
+                                    }
+                                    if (token.equals("float")){
+                                    semantico.VerificaTipos(token, 2);
+                                    }
+                                    if (token.equals("string")){
+                                    semantico.VerificaTipos(token, 3);
+                                    }
+                                    if (token.equals("char")){
+                                    semantico.VerificaTipos(token, 4);
+                                    }
+                                    break;
+                                case 107 : 
+                                    System.err.println(token);
+                                    if (token.equals("integer")){
+                                    semantico.VerificaTipos(token, 1);
+                                    }
+                                    if (token.equals("float")){
+                                    semantico.VerificaTipos(token, 2);
+                                    }
+                                    if (token.equals("string")){
+                                    semantico.VerificaTipos(token, 3);
+                                    }
+                                    if (token.equals("char")){
+                                    semantico.VerificaTipos(token, 4);
+                                    }
+                                    break;
                             }
                             pilha.pop();
                         }
@@ -372,7 +400,7 @@ public class Sintatico {
             /*46*/ {6},
             /*47*/ {8},
             /*48*/ {7, 103},
-            /*49*/ {14, 43, 7, 103, 107, 67, 42, 36, 61, 37, 62, 35, 68},
+            /*49*/ {14, 43, 7, 103, 67, 107, 42, 36, 61, 37, 62, 35, 68},
             /*50*/ {19, 36, 61, 37, 62, 35},
             /*51*/ {15},
             /*52*/ {1, 43, 7, 103, 107, 67, 107, 42, 36, 61, 37, 62, 35},
@@ -403,7 +431,7 @@ public class Sintatico {
             /*77*/ {34, 73, 74},
             /*78*/ {47, 73, 74},
             /*79*/ {15},
-            /*80*/ {75, 106, 7},
+            /*80*/ {75, 106, 76},
             /*81*/ {15},
             /*82*/ {41, 75, 106, 76},
             /*83*/ {39, 75, 106, 76},
