@@ -48,19 +48,20 @@ public class TabelaDeSimbolos {
     }
     public boolean isDeclarado(String nome) {
         for (Simbolo s : tabela) {
+            
             if (s.getNome().equals(nome)) {
                 return true;
             }
         }
         return false;
     }
-      public boolean VerificaTipo(String nome, int tipo) {
+    
+    public int getTipoVar(String nome) {
         for (Simbolo s : tabela) {
-            if (s.getNome().equals(nome) && s.getTipo()==tipo) {
-                return true;
+            if (s.getNome().equals(nome)) {
+                return s.getTipo();
             }
         }
-        return false;
+        return -1;
     }
-
 }
